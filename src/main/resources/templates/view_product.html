@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleof.org"
+      th:replace="~{base:: Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+<section style="
+    background:#050607;
+    min-height:100vh;
+    color:white;
+    padding-top:1px;
+    padding-bottom:50px;
+">
+
+
+    <div class="container card-sh"
+         style="
+         margin-top:100px;
+         margin-bottom:100px;
+         background:#101314;
+         border:1px solid #292d2f;
+         border-radius:20px;
+         box-shadow:0 15px 45px rgba(0,0,0,.45);
+         overflow:hidden;
+         ">
+
+
+        <div class="col-md-12 p-5">
+
+            <div class="row">
+
+
+                <!-- ================= PRODUCT IMAGE ================= -->
+
+                <div class="col-md-6 text-end"
+                     style="
+                     display:flex;
+                     align-items:center;
+                     justify-content:center;
+                     ">
+
+                    <div style="
+                        padding:15px;
+                        border:1px solid #292d2f;
+                        border-radius:18px;
+                        background:#080a0b;
+                        box-shadow:0 0 25px rgba(124,255,79,.06);
+                        ">
+
+                        <img src="/img/girl1.jpg"
+                             alt=""
+                             width="350px"
+                             height="350px"
+                             style="
+                             object-fit:cover;
+                             border-radius:12px;
+                             ">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= PRODUCT DETAILS ================= -->
+
+                <div class="col-md-6"
+                     style="padding:15px 30px;">
+
+
+                    <!-- PRODUCT NAME -->
+
+                    <p class="fs-3"
+                       style="
+                       color:white;
+                       font-weight:600;
+                       letter-spacing:.5px;
+                       margin-bottom:20px;
+                       ">
+
+                        <span style="color:#7CFF4F;">✦</span>
+                        Baby Clothes
+
+                    </p>
+
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p style="
+                       color:#bdbdbd;
+                       line-height:1.7;
+                       ">
+
+                        <span class="fw-bold"
+                              style="color:#7CFF4F;">
+
+                            Description :
+
+                        </span>
+
+                        <br>
+
+                        Baby Girl cloth
+
+                    </p>
+
+
+
+                    <!-- PRODUCT DETAILS -->
+
+                    <p style="
+                       color:#bdbdbd;
+                       line-height:1.9;
+                       ">
+
+                        <span class="fw-bold"
+                              style="color:#7CFF4F;">
+
+                            Product Details :
+
+                        </span>
+
+                        <br>
+
+                        Status :
+
+                        <span class="badge bg-success"
+                              style="
+                              background:#7CFF4F !important;
+                              color:#050607;
+                              font-weight:600;
+                              ">
+
+                            Available
+
+                        </span>
+
+                        <span class="badge bg-warning"
+                              style="
+                              background:#d8a928 !important;
+                              color:#050607;
+                              ">
+
+                            Out of Stock
+
+                        </span>
+
+                        <br>
+
+                        Category : Baby Clothes
+
+                        <br>
+
+                        Policy : 7 Days Replacement & Return
+
+                    </p>
+
+
+
+                    <!-- PRICE -->
+
+                    <p class="fs-5 fw-bold"
+                       style="
+                       color:white;
+                       margin-top:20px;
+                       ">
+
+                        Price :&nbsp; &nbsp; &nbsp; &nbsp;
+
+                        <i class="fas fa-rupee-sign"
+                           style="color:#7CFF4F;">
+                        </i>
+
+                        500
+
+                        <span class="fs-6 text-decoration-line-through"
+                              style="color:#777 !important;">
+
+                            1000
+
+                        </span>
+
+                        <span class="fs-6"
+                              style="
+                              color:#7CFF4F;
+                              margin-left:5px;
+                              ">
+
+                            50% off
+
+                        </span>
+
+                    </p>
+
+
+
+                    <!-- ================= FEATURES ================= -->
+
+                    <div class="row"
+                         style="
+                         margin-top:25px;
+                         margin-bottom:25px;
+                         ">
+
+
+                        <!-- COD -->
+
+                        <div class="col-md-4 text-center p-2"
+                             style="
+                             color:#7CFF4F;
+                             ">
+
+                            <i class="fas fa-money-bill-wave fa-2x"
+                               style="
+                               filter:drop-shadow(0 0 5px rgba(124,255,79,.25));
+                               ">
+                            </i>
+
+                            <p style="
+                               color:#bdbdbd;
+                               font-size:13px;
+                               margin-top:8px;
+                               ">
+
+                                Cash On Delivery
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- RETURN -->
+
+                        <div class="col-md-4 text-center p-2"
+                             style="
+                             color:#7CFF4F;
+                             ">
+
+                            <i class="fas fa-undo-alt fa-2x"
+                               style="
+                               filter:drop-shadow(0 0 5px rgba(124,255,79,.25));
+                               ">
+                            </i>
+
+                            <p style="
+                               color:#bdbdbd;
+                               font-size:13px;
+                               margin-top:8px;
+                               ">
+
+                                Return Available
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- SHIPPING -->
+
+                        <div class="col-md-4 text-center p-2"
+                             style="
+                             color:#7CFF4F;
+                             ">
+
+                            <i class="fas fa-truck-moving fa-2x"
+                               style="
+                               filter:drop-shadow(0 0 5px rgba(124,255,79,.25));
+                               ">
+                            </i>
+
+                            <p style="
+                               color:#bdbdbd;
+                               font-size:13px;
+                               margin-top:8px;
+                               ">
+
+                                Free Shipping
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ADD TO CART -->
+
+                    <a href=""
+                       class="btn btn-danger col-md-12"
+                       style="
+                       background:#7CFF4F;
+                       color:#050607;
+                       border:none;
+                       border-radius:10px;
+                       padding:12px;
+                       font-weight:600;
+                       font-size:15px;
+                       letter-spacing:.5px;
+                       transition:all .3s ease;
+                       "
+                       onmouseover="
+                       this.style.background='#9aff75';
+                       this.style.transform='translateY(-2px)';
+                       this.style.boxShadow='0 8px 22px rgba(124,255,79,.18)';
+                       "
+                       onmouseout="
+                       this.style.background='#7CFF4F';
+                       this.style.transform='translateY(0)';
+                       this.style.boxShadow='none';
+                       ">
+
+                        <i class="fa-solid fa-cart-plus"></i>
+                        &nbsp; Add To Cart
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

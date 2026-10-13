@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleof.org"
+      th:replace="~{base:: Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+</head>
+
+<body>
+
+<section style="
+    background:#050607;
+    min-height:100vh;
+    color:white;
+    padding-top:20px;
+    padding-bottom:40px;
+">
+
+
+    <div class="container mt-5 p-5">
+
+        <div class="row">
+
+
+            <!-- ================= IMAGE ================= -->
+
+            <div class="col-md-6 mt-5 p-5">
+
+                <img src="img/log.png"
+                     alt=""
+                     width="100%"
+                     height="400px"
+                     style="
+                     object-fit:cover;
+                     border-radius:18px;
+                     border:1px solid #292d2f;
+                     box-shadow:0 0 30px rgba(124,255,79,0.08);
+                     ">
+
+            </div>
+
+
+
+            <!-- ================= REGISTER CARD ================= -->
+
+            <div class="col-md-6 p-5">
+
+                <div class="card shadow p-3 mb-5 bg-body rounded"
+                     style="
+                     background:#101314 !important;
+                     color:white;
+                     border:1px solid #292d2f;
+                     border-radius:18px !important;
+                     box-shadow:0 10px 35px rgba(0,0,0,.45) !important;
+                     ">
+
+
+                    <!-- HEADER -->
+
+                    <div class="card-header"
+                         style="
+                         background:#101314;
+                         color:white;
+                         border-bottom:1px solid #292d2f;
+                         border-radius:14px 14px 0 0;
+                         ">
+
+                        <p class="fs-4 text-center"
+                           style="
+                           margin-bottom:5px;
+                           font-weight:600;
+                           letter-spacing:1px;
+                           ">
+
+                            <span style="color:#7CFF4F;">✦</span>
+                            Register
+                            <span style="color:#7CFF4F;">✦</span>
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- ================= CARD BODY ================= -->
+
+                    <div class="card-body"
+                         style="background:#101314;">
+
+                        <form class="row g-3">
+
+                            <div class="row g-3">
+
+
+                                <!-- FIRST NAME -->
+
+                                <div class="col-md-6">
+
+                                    <label for="inputfirstname"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        First Name
+
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+
+
+                                <!-- LAST NAME -->
+
+                                <div class="col-md-6">
+
+                                    <label for="inputlastname"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        Last Name
+
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+
+
+                                <!-- MOBILE -->
+
+                                <div class="col-md-6">
+
+                                    <label for="inputNumber"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        Mobile Number
+
+                                    </label>
+
+                                    <input type="number"
+                                           class="form-control"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+
+
+                                <!-- EMAIL -->
+
+                                <div class="col-md-6">
+
+                                    <label for="inputEmail4"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        Email
+
+                                    </label>
+
+                                    <input type="email"
+                                           class="form-control"
+                                           id="inputEmail4"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+
+
+                                <!-- PASSWORD -->
+
+                                <div class="col-md-6">
+
+                                    <label for="inputPassword4"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        Password
+
+                                    </label>
+
+                                    <input type="password"
+                                           class="form-control"
+                                           id="inputPassword4"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+
+
+                                <!-- CONFIRM PASSWORD -->
+
+                                <div class="col-md-6">
+
+                                    <label for="inputconfirmPassword4"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        Confirm Password
+
+                                    </label>
+
+                                    <input type="confirmpassword"
+                                           class="form-control"
+                                           id="inputconfirmPassword4"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+
+
+                                <!-- ADDRESS -->
+
+                                <div class="col-12">
+
+                                    <label for="inputAddress"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        Address
+
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           id="inputAddress"
+                                           placeholder="1234 Main St"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+
+
+                                <!-- CITY -->
+
+                                <div class="col-md-6">
+
+                                    <label for="inputCity"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        City
+
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           id="inputCity"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+
+
+                                <!-- STATE -->
+
+                                <div class="col-md-4">
+
+                                    <label for="inputState"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        State
+
+                                    </label>
+
+                                    <select id="inputState"
+                                            class="form-select"
+                                            style="
+                                            background:#080a0b;
+                                            color:#ddd;
+                                            border:1px solid #353839;
+                                            border-radius:8px;
+                                            padding:9px 12px;
+                                            ">
+
+                                        <option selected
+                                                style="background:#101314;">
+                                            Choose...
+                                        </option>
+
+                                        <option style="background:#101314;">
+                                            ...
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <!-- ZIP -->
+
+                                <div class="col-md-2">
+
+                                    <label for="inputZip"
+                                           class="form-label"
+                                           style="
+                                           color:#e8e8e8;
+                                           font-size:14px;
+                                           font-weight:500;
+                                           ">
+
+                                        Zip
+
+                                    </label>
+
+                                    <input type="text"
+                                           class="form-control"
+                                           id="inputZip"
+                                           style="
+                                           background:#080a0b;
+                                           color:white;
+                                           border:1px solid #353839;
+                                           border-radius:8px;
+                                           padding:9px 12px;
+                                           "
+                                           onfocus="
+                                           this.style.borderColor='#7CFF4F';
+                                           this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
+                                           "
+                                           onblur="
+                                           this.style.borderColor='#353839';
+                                           this.style.boxShadow='none';
+                                           ">
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- SIGN UP BUTTON -->
+
+                            <button type="submit"
+                                    class="form-control btn"
+                                    style="
+                                    background:#7CFF4F;
+                                    color:#050607;
+                                    border:none;
+                                    border-radius:9px;
+                                    padding:10px;
+                                    font-size:15px;
+                                    font-weight:600;
+                                    letter-spacing:.5px;
+                                    margin-top:18px;
+                                    transition:all .3s ease;
+                                    "
+                                    onmouseover="
+                                    this.style.background='#9aff75';
+                                    this.style.transform='translateY(-2px)';
+                                    this.style.boxShadow='0 8px 20px rgba(124,255,79,.18)';
+                                    "
+                                    onmouseout="
+                                    this.style.background='#7CFF4F';
+                                    this.style.transform='translateY(0)';
+                                    this.style.boxShadow='none';
+                                    ">
+
+                                SignUp
+
+                            </button>
+
+
+                        </form>
+
+                    </div>
+
+
+
+                    <!-- FOOTER -->
+
+                    <div class="card-footer text-center"
+                         style="
+                         background:#101314;
+                         color:#aaa;
+                         border-top:1px solid #292d2f;
+                         border-radius:0 0 14px 14px;
+                         font-size:13px;
+                         padding:15px;
+                         ">
+
+                        Already have an account ?
+
+                        <a href="/login"
+                           class="text-decoration-none"
+                           style="
+                           color:#7CFF4F;
+                           font-weight:500;
+                           ">
+
+                            Login
+
+                        </a>
+
+                        <br>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleof.org" 
+     th:replace="~{base:: Layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <section>
+        <div class="container p-5 mt-3">
+            <div class="row">
+                <div class="col-md-8 offset-md-3">
+                    <div class="card shadow p-3 mb-5 bg-body rounded">
+                        <div class="card-header text-center fs-4"> Add Product</div>
+                        <div class="card-body">
+                            <form action="">
+                               <div class="mb-3">
+                                    <label class="form-label">Product Title</label>
+                                    <input type="text" class="form-control">
+                               </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control"  rows="3"></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-control">
+                                      <option value="">---SELECT---</option>
+                                      <option value="">Electronics</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label"> Enter Price</label>
+                                    <input type="text" class="form-control">
+                               </div>
+
+                               <div class="row">
+                                <div class="mb-3 col">
+                                    <label class="form-label"> Enter Stock</label>
+                                    <input type="text" class="form-control">
+                               </div>
+                               <div class="mb-3 col">
+                                    <label class="form-label">Upload Image</label>
+                                    <input type="file" class="form-control">
+                               </div>
+
+                               </div>
+                               <button class="btn btn-primary col-md-12">Submit</button>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</body>
+</html>
