@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | NovaCart</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #050607;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 20px;
+        }
+
+        .heading {
+            color: #7CFF4F;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .panel {
+            background: #111315;
+            border: 1px solid #292c2e;
+            border-radius: 14px;
+            padding: 25px;
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            border-radius: 8px;
+            border: 1px solid #383b3d;
+            background: #1c1e20;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #7CFF4F;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .place-order {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #7CFF4F;
+            color: #050607;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .place-order:hover {
+            background: #68e63f;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #7CFF4F;
+            text-decoration: none;
+        }
+
+        .item {
+            padding: 15px 0;
+            border-bottom: 1px solid #303234;
+        }
+
+        .item-name {
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        .muted {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .green {
+            color: #7CFF4F;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .grand-total {
+            color: #7CFF4F;
+            font-size: 22px;
+        }
+
+        .error {
+            background: #321b1b;
+            border: 1px solid #8b3838;
+            color: #ffaaaa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 750px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                margin-top: 15px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<main class="container">
+
+    <h1 class="heading">Secure Checkout</h1>
+    <p class="subtitle">
+        Almost there! Enter your delivery details to place your order.
+    </p>
+
+    <div th:if="${errorMessage}" class="error"
+         th:text="${errorMessage}">
+        Please check your details.
+    </div>
+
+    <div class="checkout-layout">
+
+        <!-- CUSTOMER DETAILS -->
+        <section class="panel">
+            <h2>Delivery Details</h2>
+
+            <form th:action="@{/place-order}" method="post">
+
+                <label for="customerName">Full Name</label>
+                <input type="text"
+                       id="customerName"
+                       name="customerName"
+                       maxlength="100"
+                       autocomplete="name"
+                       placeholder="Enter your full name"
+                       required>
+
+                <label for="phone">Mobile Number</label>
+                <input type="tel"
+                       id="phone"
+                       name="phone"
+                       pattern="[0-9]{10}"
+                       maxlength="10"
+                       inputmode="numeric"
+                       autocomplete="tel"
+                       placeholder="10-digit mobile number"
+                       title="Enter a 10-digit mobile number"
+                       required>
+
+                <label for="address">Full Delivery Address</label>
+                <textarea id="address"
+                          name="address"
+                          rows="4"
+                          maxlength="1000"
+                          autocomplete="street-address"
+                          placeholder="House number, street, city, state and PIN code"
+                          required></textarea>
+
+                <label for="paymentMethod">Payment Method</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="COD">Cash on Delivery</option>
+                </select>
+
+                <button type="submit" class="place-order">
+                    <i class="fa-solid fa-lock"></i>
+                    Place Order
+                </button>
+
+            </form>
+
+            <a th:href="@{/cart}" class="back-link">
+                &#8592; Back to Cart
+            </a>
+        </section>
+
+        <!-- ORDER SUMMARY -->
+        <aside class="panel">
+            <h2>Order Summary</h2>
+
+            <div th:each="item : ${cartItems}" class="item">
+
+                <div class="item-name"
+                     th:text="${item.productName}">
+                    Product name
+                </div>
+
+                <p class="muted">
+                    Quantity:
+                    <span th:text="${item.quantity}">1</span>
+                </p>
+
+                <div class="total-row">
+                    <span class="muted">Subtotal</span>
+                    <strong>
+                        ₹<span th:text="${#numbers.formatDecimal(item.totalPrice, 1, 2)}">0.00</span>
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="total-row">
+                <span>Shipping</span>
+                <strong class="green">FREE</strong>
+            </div>
+
+            <div class="total-row grand-total">
+                <strong>Total</strong>
+                <strong>
+                    ₹<span th:text="${#numbers.formatDecimal(cartTotal, 1, 2)}">0.00</span>
+                </strong>
+            </div>
+
+            <p class="muted" style="margin-top:20px;">
+                Payment will be collected when your order is delivered.
+            </p>
+        </aside>
+
+    </div>
+
+</main>
+
+</body>
+</html>

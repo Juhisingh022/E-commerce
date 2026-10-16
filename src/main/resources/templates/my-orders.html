@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | NovaCart</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        body {
+            background: #050607;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+
+        .orders-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            color: #7CFF4F;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .search-box, .order-card {
+            background: #101312;
+            border: 1px solid #292e2a;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-control {
+            background: #080a09;
+            border: 1px solid #383e39;
+            color: white;
+            padding: 12px;
+        }
+
+        .form-control:focus {
+            background: #080a09;
+            color: white;
+            border-color: #7CFF4F;
+            box-shadow: 0 0 0 0.2rem rgba(124, 255, 79, 0.12);
+        }
+
+        .form-control::placeholder {
+            color: #858585;
+        }
+
+        .btn-green {
+            background: #7CFF4F;
+            color: #050607;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        .btn-green:hover {
+            background: #64e638;
+            color: #050607;
+        }
+
+        .order-card h5 {
+            color: #7CFF4F;
+            font-weight: 700;
+        }
+
+        .detail-label {
+            color: #999;
+        }
+
+        .detail-value {
+            color: #f5f5f5;
+            overflow-wrap: anywhere;
+        }
+
+        .status {
+            display: inline-block;
+            background: rgba(124, 255, 79, 0.12);
+            color: #7CFF4F;
+            border: 1px solid rgba(124, 255, 79, 0.35);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .product-row {
+            border-top: 1px solid #292e2a;
+            padding: 14px 0;
+        }
+
+        .total {
+            color: #7CFF4F;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .alert-custom {
+            background: #251c10;
+            color: #ffd28a;
+            border: 1px solid #60451d;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 576px) {
+            .orders-container {
+                margin: 25px auto;
+                padding: 14px;
+            }
+
+            .search-box, .order-card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="orders-container">
+
+    <div class="text-center">
+        <h1 class="page-title">
+            <i class="fa-solid fa-box-open"></i> My Orders
+        </h1>
+        <p class="subtitle">View your previous orders and track their status.</p>
+    </div>
+
+    <div class="search-box">
+        <form th:action="@{/my-orders}" method="post">
+            <label for="phone" class="form-label">
+                Enter your 10-digit mobile number
+            </label>
+
+            <div class="row g-3">
+                <div class="col-md-8">
+                    <input type="tel"
+                           id="phone"
+                           name="phone"
+                           class="form-control"
+                           placeholder="Enter mobile number used at checkout"
+                           pattern="[0-9]{10}"
+                           maxlength="10"
+                           inputmode="numeric"
+                           th:value="${phone}"
+                           required>
+                </div>
+
+                <div class="col-md-4">
+                    <button type="submit" class="btn-green w-100">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Find My Orders
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div th:if="${errorMessage != null}" class="alert alert-custom">
+        <i class="fa-solid fa-circle-info"></i>
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div th:if="${orders != null and !orders.isEmpty()}">
+
+        <h4 class="mb-4">Your Orders</h4>
+
+        <div class="order-card" th:each="order : ${orders}">
+
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+                <div>
+                    <h5>
+                        Order #<span th:text="${order.id}"></span>
+                    </h5>
+
+                    <p class="detail-label mb-0"
+                       th:if="${order.createdAt != null}">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span th:text="${#temporals.format(order.createdAt, 'dd MMM yyyy, hh:mm a')}"></span>
+                    </p>
+                </div>
+
+                <span class="status" th:text="${order.status}">PLACED</span>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                    <div class="detail-label">Customer</div>
+                    <div class="detail-value" th:text="${order.customerName}"></div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="detail-label">Payment Method</div>
+                    <div class="detail-value" th:text="${order.paymentMethod}"></div>
+                </div>
+            </div>
+
+            <h6 class="mt-3 mb-2">Items Ordered</h6>
+
+            <div class="product-row"
+                 th:each="item : ${order.items}">
+                <div class="d-flex justify-content-between gap-3">
+                    <div>
+                        <div class="detail-value fw-semibold"
+                             th:text="${item.productName}"></div>
+                        <small class="detail-label">
+                            Quantity:
+                            <span th:text="${item.quantity}"></span>
+                        </small>
+                    </div>
+
+                    <div class="detail-value"
+                         th:text="'₹' + ${#numbers.formatDecimal(item.lineTotal, 1, 2)}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-3">
+                <div>
+                    <div class="detail-label">Order Total</div>
+                    <div class="total"
+                         th:text="'₹' + ${#numbers.formatDecimal(order.totalAmount, 1, 2)}">
+                    </div>
+                </div>
+
+                <form th:action="@{/track-order}" method="post">
+                    <input type="hidden"
+                           name="orderId"
+                           th:value="${order.id}">
+
+                    <input type="hidden"
+                           name="phone"
+                           th:value="${phone}">
+
+                    <button type="submit" class="btn-green">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        Track Order
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/index" class="text-decoration-none" style="color:#7CFF4F;">
+            <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+        </a>
+    </div>
+
+</div>
+</body>
+</html>

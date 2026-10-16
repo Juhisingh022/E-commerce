@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed | NovaCart</title>
+</head>
+<body style="margin:0;background:#050607;color:white;font-family:Arial,sans-serif;">
+
+<main style="max-width:750px;margin:50px auto;padding:25px;">
+
+    <div style="text-align:center;background:#111;padding:35px 20px;border-radius:16px;">
+        <h1 style="color:#7CFF4F;">✓ Order Placed!</h1>
+        <p>Thank you for shopping with NovaCart.</p>
+        <p>Your order has been saved successfully.</p>
+
+        <h2>Order #<span th:text="${order.id}"></span></h2>
+        <p>Status:
+            <strong style="color:#7CFF4F;"
+                    th:text="${order.status}">PLACED</strong>
+        </p>
+    </div>
+
+    <div style="margin-top:25px;background:#111;padding:25px;border-radius:12px;">
+        <h2>Delivery Details</h2>
+        <p>Name: <span th:text="${order.customerName}"></span></p>
+        <p>Mobile: <span th:text="${order.phone}"></span></p>
+        <p>Address: <span th:text="${order.address}"></span></p>
+        <p>Payment: <span th:text="${order.paymentMethod}"></span></p>
+
+        <h2>Ordered Products</h2>
+
+        <div th:each="item : ${order.items}"
+             style="padding:12px 0;border-bottom:1px solid #333;">
+            <strong th:text="${item.productName}"></strong>
+            <p>
+                Quantity: <span th:text="${item.quantity}"></span>
+            </p>
+            <p>
+                Subtotal: ₹<span th:text="${#numbers.formatDecimal(item.lineTotal,1,2)}"></span>
+            </p>
+        </div>
+
+        <h2 style="color:#7CFF4F;">
+            Total: ₹<span th:text="${#numbers.formatDecimal(order.totalAmount,1,2)}"></span>
+        </h2>
+
+        <p>Payment is due on delivery.</p>
+
+        <a th:href="@{/products}"
+           style="display:inline-block;margin-top:15px;padding:13px 22px;background:#7CFF4F;color:#050607;text-decoration:none;font-weight:bold;border-radius:7px;">
+            Continue Shopping
+        </a>
+    </div>
+
+</main>
+</body>
+</html>
