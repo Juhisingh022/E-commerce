@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleof.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{base:: Layout(~{::section})}">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
 </head>
 
@@ -16,15 +18,11 @@
     padding-top:20px;
 ">
 
-
     <div class="container mt-5 p-5">
-
         <div class="row">
-
 
             <!-- IMAGE -->
             <div class="col-md-6 mt-5 p-5">
-
                 <img src="img/log.png"
                      alt=""
                      width="100%"
@@ -35,14 +33,10 @@
                      border:1px solid #292d2f;
                      box-shadow:0 0 30px rgba(124,255,79,0.08);
                      ">
-
             </div>
-
-
 
             <!-- LOGIN CARD -->
             <div class="col-md-6 p-5">
-
                 <div class="card shadow p-3 mb-5 bg-body rounded"
                      style="
                      background:#101314 !important;
@@ -52,7 +46,6 @@
                      box-shadow:0 10px 35px rgba(0,0,0,0.45) !important;
                      ">
 
-
                     <!-- HEADER -->
                     <div class="card-header"
                          style="
@@ -61,52 +54,45 @@
                          border-bottom:1px solid #292d2f;
                          border-radius:14px 14px 0 0;
                          ">
-
                         <p class="fs-4 text-center"
-                           style="
-                           margin-bottom:5px;
-                           font-weight:600;
-                           letter-spacing:1px;
-                           ">
-
+                           style="margin-bottom:5px;font-weight:600;letter-spacing:1px;">
                             <span style="color:#7CFF4F;">✦</span>
                             Login
                             <span style="color:#7CFF4F;">✦</span>
-
                         </p>
-
                     </div>
 
-
-
                     <!-- BODY -->
-                    <div class="card-body"
-                         style="background:#101314;">
+                    <div class="card-body" style="background:#101314;">
 
+                        <!-- ERROR MESSAGE -->
+                        <div th:if="${error}"
+                             class="alert alert-danger"
+                             th:text="${error}">
+                        </div>
 
-                        <form>
+                        <!-- SUCCESS MESSAGE -->
+                        <div th:if="${success}"
+                             class="alert alert-success"
+                             th:text="${success}">
+                        </div>
 
+                        <form th:action="@{/login}" method="post">
 
                             <!-- EMAIL -->
                             <div class="mb-3">
-
                                 <label for="exampleInputEmail1"
                                        class="form-label"
-                                       style="
-                                       color:#e8e8e8;
-                                       font-size:14px;
-                                       font-weight:500;
-                                       ">
-
+                                       style="color:#e8e8e8;font-size:14px;font-weight:500;">
                                     Email address
-
                                 </label>
 
-
                                 <input type="email"
+                                       name="email"
                                        class="form-control"
                                        id="exampleInputEmail1"
                                        aria-describedby="emailHelp"
+                                       required
                                        style="
                                        background:#080a0b;
                                        color:white;
@@ -114,51 +100,29 @@
                                        border-radius:9px;
                                        padding:11px 13px;
                                        "
-                                       onfocus="
-                                       this.style.borderColor='#7CFF4F';
-                                       this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.12)';
-                                       "
-                                       onblur="
-                                       this.style.borderColor='#353839';
-                                       this.style.boxShadow='none';
-                                       ">
-
+                                       onfocus="this.style.borderColor='#7CFF4F';this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.12)';"
+                                       onblur="this.style.borderColor='#353839';this.style.boxShadow='none';">
 
                                 <div id="emailHelp"
                                      class="form-text"
-                                     style="
-                                     color:#777;
-                                     font-size:11px;
-                                     margin-top:6px;
-                                     ">
-
+                                     style="color:#777;font-size:11px;margin-top:6px;">
                                     We'll never share your email with anyone else.
-
                                 </div>
-
                             </div>
-
-
 
                             <!-- PASSWORD -->
                             <div class="mb-3">
-
                                 <label for="exampleInputPassword1"
                                        class="form-label"
-                                       style="
-                                       color:#e8e8e8;
-                                       font-size:14px;
-                                       font-weight:500;
-                                       ">
-
+                                       style="color:#e8e8e8;font-size:14px;font-weight:500;">
                                     Password
-
                                 </label>
 
-
                                 <input type="password"
+                                       name="password"
                                        class="form-control"
                                        id="exampleInputPassword1"
+                                       required
                                        style="
                                        background:#080a0b;
                                        color:white;
@@ -166,44 +130,23 @@
                                        border-radius:9px;
                                        padding:11px 13px;
                                        "
-                                       onfocus="
-                                       this.style.borderColor='#7CFF4F';
-                                       this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.12)';
-                                       "
-                                       onblur="
-                                       this.style.borderColor='#353839';
-                                       this.style.boxShadow='none';
-                                       ">
-
+                                       onfocus="this.style.borderColor='#7CFF4F';this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.12)';"
+                                       onblur="this.style.borderColor='#353839';this.style.boxShadow='none';">
                             </div>
-
-
 
                             <!-- CHECKBOX -->
                             <div class="mb-3 form-check">
-
                                 <input type="checkbox"
                                        class="form-check-input"
                                        id="exampleCheck1"
-                                       style="
-                                       background-color:#080a0b;
-                                       border-color:#555;
-                                       ">
+                                       style="background-color:#080a0b;border-color:#555;">
 
                                 <label class="form-check-label"
                                        for="exampleCheck1"
-                                       style="
-                                       color:#bdbdbd;
-                                       font-size:13px;
-                                       ">
-
+                                       style="color:#bdbdbd;font-size:13px;">
                                     Check me out
-
                                 </label>
-
                             </div>
-
-
 
                             <!-- SUBMIT -->
                             <button type="submit"
@@ -219,27 +162,13 @@
                                     letter-spacing:.4px;
                                     transition:all .3s ease;
                                     "
-                                    onmouseover="
-                                    this.style.background='#9aff75';
-                                    this.style.transform='translateY(-2px)';
-                                    this.style.boxShadow='0 8px 20px rgba(124,255,79,.18)';
-                                    "
-                                    onmouseout="
-                                    this.style.background='#7CFF4F';
-                                    this.style.transform='translateY(0)';
-                                    this.style.boxShadow='none';
-                                    ">
-
+                                    onmouseover="this.style.background='#9aff75';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 20px rgba(124,255,79,.18)';"
+                                    onmouseout="this.style.background='#7CFF4F';this.style.transform='translateY(0)';this.style.boxShadow='none';">
                                 Submit
-
                             </button>
 
-
                         </form>
-
                     </div>
-
-
 
                     <!-- FOOTER -->
                     <div class="card-footer text-center"
@@ -251,47 +180,31 @@
                          font-size:13px;
                          ">
 
-
                         <a href="#"
                            class="text-decoration-none"
-                           style="
-                           color:#7CFF4F;
-                           ">
-
+                           style="color:#7CFF4F;">
                             Forget Password
-
                         </a>
 
                         <br>
-
 
                         <span style="color:#999;">
-                            Don't have an account ?
+                            Don't have an account?
                         </span>
 
-
-                        <a href="/signup"
+                        <a th:href="@{/signup}"
                            class="text-decoration-none"
-                           style="
-                           color:#7CFF4F;
-                           font-weight:500;
-                           ">
-
+                           style="color:#7CFF4F;font-weight:500;">
                             Create Account
-
                         </a>
 
                         <br>
-
                     </div>
 
-
                 </div>
-
             </div>
 
         </div>
-
     </div>
 
 </section>
