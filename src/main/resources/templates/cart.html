@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base:: Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCart - My Cart</title>
+</head>
+
+<body>
+<section style="background:#050607; min-height:100vh; color:white;
+                padding:100px 0 50px;">
+
+    <div class="container"
+         style="background:#101314; border:1px solid #292d2f;
+                border-radius:20px; padding:30px;
+                box-shadow:0 15px 45px rgba(0,0,0,.45);">
+
+        <!-- HEADER -->
+        <h2 style="color:#7CFF4F; margin-bottom:30px;">
+            <i class="fa-solid fa-cart-shopping"></i>
+            My Cart
+            <span style="color:#bdbdbd; font-size:16px;"
+                  th:text="'(' + ${cartCount} + ' items)'">(0 items)</span>
+        </h2>
+
+        <!-- EMPTY CART -->
+        <div th:if="${#lists.isEmpty(cartItems)}"
+             class="text-center" style="padding:50px 0;">
+
+            <i class="fa-solid fa-cart-arrow-down"
+               style="font-size:55px;color:#7CFF4F;"></i>
+
+            <h4 style="margin-top:20px;">Your cart is empty!</h4>
+
+            <p style="color:#bdbdbd;">
+                Your next favourite item is waiting for you.
+            </p>
+
+            <a th:href="@{/products}"
+               class="btn mt-2"
+               style="background:#7CFF4F;color:#050607;
+                      border-radius:10px;padding:10px 20px;font-weight:600;">
+                <i class="fa-solid fa-store"></i> Continue Shopping
+            </a>
+        </div>
+
+        <!-- CART ITEMS -->
+        <div th:unless="${#lists.isEmpty(cartItems)}">
+
+            <div th:each="item : ${cartItems}"
+                 class="row align-items-center g-3"
+                 style="border-bottom:1px solid #292d2f;
+                        padding:22px 0;margin:0;">
+
+                <!-- IMAGE -->
+                <div class="col-5 col-md-3 text-center">
+                    <div style="background:#080a0b;border:1px solid #292d2f;
+                                border-radius:14px;padding:8px;">
+                        <img th:src="${item.image}"
+                             th:alt="${item.productName}"
+                             style="width:100%;max-width:140px;height:130px;
+                                    object-fit:contain;border-radius:10px;">
+                    </div>
+                </div>
+
+                <!-- PRODUCT INFO -->
+                <div class="col-7 col-md-4">
+                    <h5 style="color:white;font-weight:600;"
+                        th:text="${item.productName}">Product Name</h5>
+
+                    <p style="color:#bdbdbd;font-size:14px;"
+                       th:text="${item.description}">Product description</p>
+
+                    <p style="color:#7CFF4F;font-weight:600;margin-bottom:0;">
+                        ₹ <span th:text="${#numbers.formatDecimal(item.price, 1, 2)}">500.00</span>
+                    </p>
+                </div>
+
+                <!-- QUANTITY CONTROLS -->
+                <div class="col-6 col-md-2">
+                    <p style="color:#bdbdbd;font-size:13px;margin-bottom:8px;">
+                        Quantity
+                    </p>
+
+                    <div class="d-flex align-items-center"
+                         style="gap:8px;">
+
+                        <form th:action="@{/update-cart}" method="post">
+                            <input type="hidden" name="productName"
+                                   th:value="${item.productName}">
+                            <input type="hidden" name="change" value="-1">
+
+                            <button type="submit"
+                                    class="btn btn-sm"
+                                    th:disabled="${item.quantity <= 1}"
+                                    aria-label="Decrease quantity"
+                                    style="background:#202526;color:#7CFF4F;
+                                           border:1px solid #3a4142;border-radius:7px;">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                        </form>
+
+                        <span th:text="${item.quantity}"
+                              style="min-width:22px;text-align:center;
+                                     font-weight:600;">1</span>
+
+                        <form th:action="@{/update-cart}" method="post">
+                            <input type="hidden" name="productName"
+                                   th:value="${item.productName}">
+                            <input type="hidden" name="change" value="1">
+
+                            <button type="submit"
+                                    class="btn btn-sm"
+                                    aria-label="Increase quantity"
+                                    style="background:#202526;color:#7CFF4F;
+                                           border:1px solid #3a4142;border-radius:7px;">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- SUBTOTAL & REMOVE -->
+                <div class="col-6 col-md-3 text-md-end">
+                    <p style="color:#bdbdbd;font-size:13px;margin-bottom:5px;">
+                        Subtotal
+                    </p>
+
+                    <h5 style="color:#7CFF4F;font-weight:700;">
+                        ₹ <span th:text="${#numbers.formatDecimal(item.totalPrice, 1, 2)}">500.00</span>
+                    </h5>
+
+                    <form th:action="@{/remove-from-cart}" method="post">
+                        <input type="hidden" name="productName"
+                               th:value="${item.productName}">
+
+                        <button type="submit"
+                                class="btn btn-sm mt-1"
+                                style="background:#ff4d4d;color:white;
+                                       border:none;border-radius:8px;
+                                       padding:7px 12px;">
+                            <i class="fa-solid fa-trash"></i> Remove
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- CART SUMMARY -->
+            <div class="row justify-content-end mt-4">
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div style="background:#080a0b;border:1px solid #292d2f;
+                                border-radius:14px;padding:22px;">
+
+                        <h5 style="color:white;margin-bottom:18px;">
+                            Order Summary
+                        </h5>
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <span style="color:#bdbdbd;">Items</span>
+                            <span th:text="${cartCount}">0</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <span style="color:#bdbdbd;">Shipping</span>
+                            <span style="color:#7CFF4F;">Free</span>
+                        </div>
+
+                        <hr style="border-color:#3a4142;">
+
+                        <div class="d-flex justify-content-between">
+                            <strong>Order Total</strong>
+                            <strong style="color:#7CFF4F;font-size:21px;">
+                                ₹ <span th:text="${#numbers.formatDecimal(cartTotal, 1, 2)}">0.00</span>
+                            </strong>
+                        </div>
+
+                        <button type="button"
+                                class="btn w-100 mt-4"
+                                onclick="alert('Checkout will be available after we add the checkout feature.')"
+                                style="background:#7CFF4F;color:#050607;
+                                       border:none;border-radius:10px;padding:12px;
+                                       font-weight:700;">
+                            <i class="fa-solid fa-lock"></i> Proceed to Checkout
+                        </button>
+
+                        <a th:href="@{/products}"
+                           class="btn w-100 mt-2"
+                           style="border:1px solid #7CFF4F;color:#7CFF4F;
+                                  border-radius:10px;padding:10px;">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

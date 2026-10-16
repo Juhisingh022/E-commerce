@@ -1,339 +1,232 @@
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleof.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{base:: Layout(~{::section})}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Product Details - NovaCart</title>
 </head>
 
 <body>
+<section style="background:#050607; min-height:100vh; color:white;
+                padding-top:1px; padding-bottom:50px;">
 
-<section style="
-    background:#050607;
-    min-height:100vh;
-    color:white;
-    padding-top:1px;
-    padding-bottom:50px;
-">
+    <div class="container card-sh px-3 px-md-4"
+         style="margin-top:70px; margin-bottom:70px;
+                background:#101314; border:1px solid #292d2f;
+                border-radius:20px; box-shadow:0 15px 45px rgba(0,0,0,.45);
+                overflow:hidden;">
 
+        <div class="row p-3 p-md-4">
 
-    <div class="container card-sh"
-         style="
-         margin-top:100px;
-         margin-bottom:100px;
-         background:#101314;
-         border:1px solid #292d2f;
-         border-radius:20px;
-         box-shadow:0 15px 45px rgba(0,0,0,.45);
-         overflow:hidden;
-         ">
+            <!-- PRODUCT IMAGE -->
+            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center p-3">
 
+                <div style="width:100%; max-width:400px; padding:15px;
+                            border:1px solid #292d2f; border-radius:18px;
+                            background:#080a0b;
+                            box-shadow:0 0 25px rgba(124,255,79,.06);">
 
-        <div class="col-md-12 p-5">
-
-            <div class="row">
-
-
-                <!-- ================= PRODUCT IMAGE ================= -->
-
-                <div class="col-md-6 text-end"
-                     style="
-                     display:flex;
-                     align-items:center;
-                     justify-content:center;
-                     ">
-
-                    <div style="
-                        padding:15px;
-                        border:1px solid #292d2f;
-                        border-radius:18px;
-                        background:#080a0b;
-                        box-shadow:0 0 25px rgba(124,255,79,.06);
-                        ">
-
-                        <img src="/img/girl1.jpg"
-                             alt=""
-                             width="350px"
-                             height="350px"
-                             style="
-                             object-fit:cover;
-                             border-radius:12px;
-                             ">
-
-                    </div>
-
+                    <img id="productImage"
+                         th:src="${productImage}"
+                         th:alt="${productName}"
+                         style="width:100%; height:300px; object-fit:contain;
+                                border-radius:12px;">
                 </div>
-
-
-
-                <!-- ================= PRODUCT DETAILS ================= -->
-
-                <div class="col-md-6"
-                     style="padding:15px 30px;">
-
-
-                    <!-- PRODUCT NAME -->
-
-                    <p class="fs-3"
-                       style="
-                       color:white;
-                       font-weight:600;
-                       letter-spacing:.5px;
-                       margin-bottom:20px;
-                       ">
-
-                        <span style="color:#7CFF4F;">✦</span>
-                        Baby Clothes
-
-                    </p>
-
-
-
-                    <!-- DESCRIPTION -->
-
-                    <p style="
-                       color:#bdbdbd;
-                       line-height:1.7;
-                       ">
-
-                        <span class="fw-bold"
-                              style="color:#7CFF4F;">
-
-                            Description :
-
-                        </span>
-
-                        <br>
-
-                        Baby Girl cloth
-
-                    </p>
-
-
-
-                    <!-- PRODUCT DETAILS -->
-
-                    <p style="
-                       color:#bdbdbd;
-                       line-height:1.9;
-                       ">
-
-                        <span class="fw-bold"
-                              style="color:#7CFF4F;">
-
-                            Product Details :
-
-                        </span>
-
-                        <br>
-
-                        Status :
-
-                        <span class="badge bg-success"
-                              style="
-                              background:#7CFF4F !important;
-                              color:#050607;
-                              font-weight:600;
-                              ">
-
-                            Available
-
-                        </span>
-
-                        <span class="badge bg-warning"
-                              style="
-                              background:#d8a928 !important;
-                              color:#050607;
-                              ">
-
-                            Out of Stock
-
-                        </span>
-
-                        <br>
-
-                        Category : Baby Clothes
-
-                        <br>
-
-                        Policy : 7 Days Replacement & Return
-
-                    </p>
-
-
-
-                    <!-- PRICE -->
-
-                    <p class="fs-5 fw-bold"
-                       style="
-                       color:white;
-                       margin-top:20px;
-                       ">
-
-                        Price :&nbsp; &nbsp; &nbsp; &nbsp;
-
-                        <i class="fas fa-rupee-sign"
-                           style="color:#7CFF4F;">
-                        </i>
-
-                        500
-
-                        <span class="fs-6 text-decoration-line-through"
-                              style="color:#777 !important;">
-
-                            1000
-
-                        </span>
-
-                        <span class="fs-6"
-                              style="
-                              color:#7CFF4F;
-                              margin-left:5px;
-                              ">
-
-                            50% off
-
-                        </span>
-
-                    </p>
-
-
-
-                    <!-- ================= FEATURES ================= -->
-
-                    <div class="row"
-                         style="
-                         margin-top:25px;
-                         margin-bottom:25px;
-                         ">
-
-
-                        <!-- COD -->
-
-                        <div class="col-md-4 text-center p-2"
-                             style="
-                             color:#7CFF4F;
-                             ">
-
-                            <i class="fas fa-money-bill-wave fa-2x"
-                               style="
-                               filter:drop-shadow(0 0 5px rgba(124,255,79,.25));
-                               ">
-                            </i>
-
-                            <p style="
-                               color:#bdbdbd;
-                               font-size:13px;
-                               margin-top:8px;
-                               ">
-
-                                Cash On Delivery
-
-                            </p>
-
-                        </div>
-
-
-
-                        <!-- RETURN -->
-
-                        <div class="col-md-4 text-center p-2"
-                             style="
-                             color:#7CFF4F;
-                             ">
-
-                            <i class="fas fa-undo-alt fa-2x"
-                               style="
-                               filter:drop-shadow(0 0 5px rgba(124,255,79,.25));
-                               ">
-                            </i>
-
-                            <p style="
-                               color:#bdbdbd;
-                               font-size:13px;
-                               margin-top:8px;
-                               ">
-
-                                Return Available
-
-                            </p>
-
-                        </div>
-
-
-
-                        <!-- SHIPPING -->
-
-                        <div class="col-md-4 text-center p-2"
-                             style="
-                             color:#7CFF4F;
-                             ">
-
-                            <i class="fas fa-truck-moving fa-2x"
-                               style="
-                               filter:drop-shadow(0 0 5px rgba(124,255,79,.25));
-                               ">
-                            </i>
-
-                            <p style="
-                               color:#bdbdbd;
-                               font-size:13px;
-                               margin-top:8px;
-                               ">
-
-                                Free Shipping
-
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- ADD TO CART -->
-
-                    <a href=""
-                       class="btn btn-danger col-md-12"
-                       style="
-                       background:#7CFF4F;
-                       color:#050607;
-                       border:none;
-                       border-radius:10px;
-                       padding:12px;
-                       font-weight:600;
-                       font-size:15px;
-                       letter-spacing:.5px;
-                       transition:all .3s ease;
-                       "
-                       onmouseover="
-                       this.style.background='#9aff75';
-                       this.style.transform='translateY(-2px)';
-                       this.style.boxShadow='0 8px 22px rgba(124,255,79,.18)';
-                       "
-                       onmouseout="
-                       this.style.background='#7CFF4F';
-                       this.style.transform='translateY(0)';
-                       this.style.boxShadow='none';
-                       ">
-
-                        <i class="fa-solid fa-cart-plus"></i>
-                        &nbsp; Add To Cart
-
-                    </a>
-
-
-                </div>
-
             </div>
 
-        </div>
+            <!-- PRODUCT DETAILS -->
+            <div class="col-12 col-md-6 p-3 p-md-4">
 
+                <p class="fs-3" style="color:white; font-weight:600;
+                                      letter-spacing:.5px; margin-bottom:20px;">
+                    <span style="color:#7CFF4F;">✦</span>
+                    <span th:text="${productName}">Baby Clothes</span>
+                </p>
+
+                <!-- DESCRIPTION -->
+                <p style="color:#bdbdbd; line-height:1.7;">
+                    <span class="fw-bold" style="color:#7CFF4F;">Description:</span>
+                    <br>
+                    <span th:text="${productDescription}">
+                        Comfortable and stylish product.
+                    </span>
+                </p>
+
+                <!-- PRODUCT INFORMATION -->
+                <p style="color:#bdbdbd; line-height:1.9;">
+                    <span class="fw-bold" style="color:#7CFF4F;">
+                        Product Details:
+                    </span>
+                    <br>
+
+                    Status:
+                    <span class="badge"
+                          style="background:#7CFF4F; color:#050607;">
+                        Available
+                    </span>
+                    <br>
+
+                    Category:
+                    <span th:text="${productCategory}">
+                        Products
+                    </span>
+                    <br>
+
+                    Policy: 7 Days Replacement &amp; Return
+                </p>
+
+                <!-- PRICE -->
+                <p class="fs-5 fw-bold"
+                   style="color:white; margin-top:20px;">
+
+                    Price:
+                    <i class="fas fa-rupee-sign" style="color:#7CFF4F;"></i>
+
+                    <span th:text="${productPrice}">500</span>
+
+                    <span class="fs-6"
+                          style="color:#7CFF4F; margin-left:5px;"
+                          th:text="${productDiscount}">
+                        20% off
+                    </span>
+                </p>
+
+                <!-- FEATURES -->
+                <div class="row mt-4 mb-4">
+
+                    <div class="col-4 text-center p-2" style="color:#7CFF4F;">
+                        <i class="fas fa-money-bill-wave fa-2x"></i>
+                        <p style="color:#bdbdbd; font-size:12px; margin-top:8px;">
+                            Cash On Delivery
+                        </p>
+                    </div>
+
+                    <div class="col-4 text-center p-2" style="color:#7CFF4F;">
+                        <i class="fas fa-undo-alt fa-2x"></i>
+                        <p style="color:#bdbdbd; font-size:12px; margin-top:8px;">
+                            Return Available
+                        </p>
+                    </div>
+
+                    <div class="col-4 text-center p-2" style="color:#7CFF4F;">
+                        <i class="fas fa-truck-moving fa-2x"></i>
+                        <p style="color:#bdbdbd; font-size:12px; margin-top:8px;">
+                            Free Shipping
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- ADD TO CART -->
+                <form th:action="@{/add-to-cart}" method="post" id="addToCartForm">
+
+                    <input type="hidden" name="productName" th:value="${productName}">
+
+                    <button type="submit"
+                            id="addToCartBtn"
+                            class="btn w-100"
+                            style="background:#7CFF4F; color:#050607;
+                                   border:none; border-radius:10px; padding:12px;
+                                   font-weight:600; font-size:15px;">
+
+                        <i class="fa-solid fa-cart-plus" id="cartButtonIcon"></i>
+                        <span id="cartButtonText"> Add To Cart</span>
+                    </button>
+                </form>
+
+                <style>
+                    #addToCartBtn:disabled {
+                        opacity: .85;
+                        cursor: wait;
+                    }
+
+                    #addToCartBtn.is-loading {
+                        background: #b5ff9c !important;
+                        transform: scale(.98);
+                    }
+
+                    #addToCartBtn .fa-spinner {
+                        animation: cartSpin .8s linear infinite;
+                    }
+
+                    @keyframes cartSpin {
+                        to { transform: rotate(360deg); }
+                    }
+                </style>
+
+                <!-- FLYING PRODUCT ANIMATION -->
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const form = document.getElementById("addToCartForm");
+
+                        if (!form) return;
+
+                        form.addEventListener("submit", function (event) {
+                            const productImage = document.getElementById("productImage");
+                            const cartLink = document.getElementById("cartLink");
+
+                            // Submit normally if animation elements are unavailable
+                            if (!productImage || !cartLink) return;
+
+                            event.preventDefault();
+
+                            const button = document.getElementById("addToCartBtn");
+                            const icon = document.getElementById("cartButtonIcon");
+                            const text = document.getElementById("cartButtonText");
+
+                            button.disabled = true;
+                            button.classList.add("is-loading");
+                            icon.className = "fa-solid fa-spinner";
+                            text.textContent = " Adding to Cart...";
+
+                            const flyingImage = productImage.cloneNode(true);
+                            const start = productImage.getBoundingClientRect();
+                            const end = cartLink.getBoundingClientRect();
+
+                            flyingImage.style.cssText = `
+                                position:fixed;
+                                z-index:99999;
+                                left:${start.left}px;
+                                top:${start.top}px;
+                                width:${start.width}px;
+                                height:${start.height}px;
+                                object-fit:contain;
+                                border-radius:12px;
+                                pointer-events:none;
+                                transition:all .75s ease-in-out;
+                            `;
+
+                            document.body.appendChild(flyingImage);
+
+                            requestAnimationFrame(() => {
+                                requestAnimationFrame(() => {
+                                    flyingImage.style.left =
+                                        (end.left + end.width / 2 - 15) + "px";
+                                    flyingImage.style.top =
+                                        (end.top + end.height / 2 - 15) + "px";
+                                    flyingImage.style.width = "30px";
+                                    flyingImage.style.height = "30px";
+                                    flyingImage.style.opacity = ".4";
+                                    flyingImage.style.borderRadius = "50%";
+                                });
+                            });
+
+                            setTimeout(() => {
+                                flyingImage.remove();
+                                form.submit();
+                            }, 800);
+                        });
+                    });
+                </script>
+
+            </div>
+        </div>
     </div>
 
 </section>
-
 </body>
 </html>
+

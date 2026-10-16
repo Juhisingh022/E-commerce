@@ -1,592 +1,293 @@
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleof.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{base:: Layout(~{::section})}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NovaCart Products</title>
 </head>
 
 <body>
+<section style="background:#050607; min-height:100vh; color:white; padding-bottom:50px;">
 
-<section style="
-    background:#050607;
-    min-height:100vh;
-    color:white;
-    padding-bottom:50px;
-">
+    <!-- SEARCH -->
+    <div class="container-fluid px-3 px-md-5 mt-4"
+         style="padding-top:35px !important;">
 
+        <div class="row shadow p-3 mb-4 rounded"
+             style="background:#101314; border:1px solid #292d2f;
+                    border-radius:15px !important;">
 
-    <!-- ================= SEARCH SECTION ================= -->
-
-    <div class="container-fluid p-5 mt-5"
-         style="
-         background:#050607;
-         padding-top:45px !important;
-         ">
-
-        <div class="row shadow p-3 mb-5 bg-body rounded"
-             style="
-             background:#101314 !important;
-             border:1px solid #292d2f;
-             border-radius:15px !important;
-             box-shadow:0 10px 30px rgba(0,0,0,.35) !important;
-             ">
-
-            <div class="col-md-8 offset-md-2">
-
-                <form action="">
+            <div class="col-12 col-lg-8 offset-lg-2">
+                <form th:action="@{/products}" method="get">
+                    <input type="hidden" name="category" th:value="${category}">
 
                     <div class="input-group">
-
-                        <input type="text"
-                               class="form-control"
-                               name="ch"
+                        <input type="text" class="form-control"
+                               name="ch" th:value="${searchQuery}"
                                placeholder="Search products..."
-                               style="
-                               background:#080a0b;
-                               color:white;
-                               border:1px solid #353839;
-                               border-radius:10px 0 0 10px;
-                               padding:12px 15px;
-                               "
-                               onfocus="
-                               this.style.borderColor='#7CFF4F';
-                               this.style.boxShadow='0 0 0 0.15rem rgba(124,255,79,.10)';
-                               "
-                               onblur="
-                               this.style.borderColor='#353839';
-                               this.style.boxShadow='none';
-                               ">
+                               style="background:#080a0b; color:white;
+                                      border:1px solid #353839; padding:12px;">
 
-                        <button class="btn btn-dark ms-3 col-md-2"
-                                style="
-                                background:#7CFF4F;
-                                color:#050607;
-                                border:none;
-                                border-radius:10px;
-                                font-weight:600;
-                                transition:all .3s ease;
-                                "
-                                onmouseover="
-                                this.style.background='#9aff75';
-                                this.style.transform='translateY(-2px)';
-                                this.style.boxShadow='0 7px 18px rgba(124,255,79,.18)';
-                                "
-                                onmouseout="
-                                this.style.background='#7CFF4F';
-                                this.style.transform='translateY(0)';
-                                this.style.boxShadow='none';
-                                ">
-
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            Search
-
+                        <button type="submit" class="btn ms-2"
+                                style="background:#7CFF4F; color:#050607;
+                                       border-radius:8px; font-weight:600;">
+                            <i class="fa-solid fa-magnifying-glass"></i> Search
                         </button>
-
                     </div>
-
                 </form>
-
             </div>
-
         </div>
-
     </div>
 
+    <!-- PRODUCTS AND CATEGORIES -->
+    <div class="container-fluid px-3 px-md-4">
+        <div class="row g-3">
 
+            <!-- CATEGORY SIDEBAR -->
+            <div class="col-12 col-md-4 col-lg-3 col-xl-2">
 
-    <!-- ================= PRODUCTS SECTION ================= -->
+                <div class="category-panel p-3">
+                    <h5 class="mb-3" style="color:#7CFF4F;">Categories</h5>
 
-    <div class="container-fluid mt-1"
-         style="
-         background:#050607;
-         ">
+                    <div class="list-group">
+                        <a th:href="@{/products}"
+                           class="list-group-item category-link">
+                            All Products
+                        </a>
 
-        <div class="row">
+                        <a th:href="@{/products(category='Baby Clothes')}"
+                           class="list-group-item category-link">
+                            Baby Clothes
+                        </a>
 
+                        <a th:href="@{/products(category='Gifts')}"
+                           class="list-group-item category-link">
+                            Gifts
+                        </a>
 
-            <!-- ================= CATEGORY SIDEBAR ================= -->
+                        <a th:href="@{/products(category='Foot Wear')}"
+                           class="list-group-item category-link">
+                            Foot Wear
+                        </a>
 
-            <div class="col-md-2 p-0">
+                        <a th:href="@{/products(category='Accessary')}"
+                           class="list-group-item category-link">
+                            Accessories
+                        </a>
 
-                <div class="card shadow p-3 mb-5 bg-body rounded"
-                     style="
-                     background:#101314 !important;
-                     border:1px solid #292d2f;
-                     border-radius:14px !important;
-                     box-shadow:0 8px 25px rgba(0,0,0,.35) !important;
-                     ">
+                        <a th:href="@{/products(category='Bags')}"
+                           class="list-group-item category-link">
+                            Bags
+                        </a>
 
-                    <div class="card-body">
+                        <a th:href="@{/products(category='Home Decore items')}"
+                           class="list-group-item category-link">
+                            Home Decor
+                        </a>
 
-                        <div class="list-group">
+                        <a th:href="@{/products(category='Watches')}"
+                           class="list-group-item category-link">
+                            Watches
+                        </a>
 
+                        <a th:href="@{/products(category='Study Materials')}"
+                           class="list-group-item category-link">
+                            Study Materials
+                        </a>
 
-                            <a href="#"
-                               class="list-group-item list-group-item-action active"
-                               aria-current="true"
-                               style="
-                               color:#050607;
-                               background:#7CFF4F;
-                               border:1px solid #7CFF4F;
-                               font-weight:600;
-                               border-radius:8px;
-                               margin-bottom:5px;
-                               ">
+                        <a th:href="@{/products(category='Electronics')}"
+                           class="list-group-item category-link">
+                            Electronics
+                        </a>
 
-                                <i class="fa-solid fa-layer-group"
-                                   style="margin-right:7px;"></i>
-                                Categories
-
-                            </a>
-
-
-                            <a href="#"
-                               class="list-group-item list-group-item-action"
-                               style="
-                               background:#101314;
-                               color:#d5d5d5;
-                               border:1px solid #292d2f;
-                               border-radius:7px;
-                               margin-bottom:4px;
-                               transition:all .25s ease;
-                               "
-                               onmouseover="
-                               this.style.color='#7CFF4F';
-                               this.style.borderColor='#7CFF4F';
-                               this.style.paddingLeft='20px';
-                               "
-                               onmouseout="
-                               this.style.color='#d5d5d5';
-                               this.style.borderColor='#292d2f';
-                               this.style.paddingLeft='12px';
-                               ">
-
-                                Clothes
-
-                            </a>
-
-
-                            <a href="#"
-                               class="list-group-item list-group-item-action"
-                               style="
-                               background:#101314;
-                               color:#d5d5d5;
-                               border:1px solid #292d2f;
-                               border-radius:7px;
-                               margin-bottom:4px;
-                               transition:all .25s ease;
-                               "
-                               onmouseover="
-                               this.style.color='#7CFF4F';
-                               this.style.borderColor='#7CFF4F';
-                               this.style.paddingLeft='20px';
-                               "
-                               onmouseout="
-                               this.style.color='#d5d5d5';
-                               this.style.borderColor='#292d2f';
-                               this.style.paddingLeft='12px';
-                               ">
-
-                                Eloctronics
-
-                            </a>
-
-
-                            <a href="#"
-                               class="list-group-item list-group-item-action"
-                               style="
-                               background:#101314;
-                               color:#d5d5d5;
-                               border:1px solid #292d2f;
-                               border-radius:7px;
-                               transition:all .25s ease;
-                               "
-                               onmouseover="
-                               this.style.color='#7CFF4F';
-                               this.style.borderColor='#7CFF4F';
-                               this.style.paddingLeft='20px';
-                               "
-                               onmouseout="
-                               this.style.color='#d5d5d5';
-                               this.style.borderColor='#292d2f';
-                               this.style.paddingLeft='12px';
-                               ">
-
-                                Mobile Phones
-
-                            </a>
-
-
-                        </div>
-
+                        <a th:href="@{/products(category='Phones')}"
+                           class="list-group-item category-link">
+                            Mobile Phones
+                        </a>
                     </div>
-
                 </div>
-
             </div>
 
+            <!-- PRODUCT GRID -->
+            <div class="col-12 col-md-8 col-lg-9 col-xl-10">
 
+                <div class="products-panel p-2 p-md-4">
 
-            <!-- ================= PRODUCT AREA ================= -->
+                    <h3 class="text-center mb-4"
+                        style="color:white; font-weight:600;">
 
-            <div class="col-md-10">
+                        <span style="color:#7CFF4F;">✦ </span>
+                        <span th:if="${#strings.isEmpty(category)}">All Products</span>
+                        <span th:unless="${#strings.isEmpty(category)}"
+                              th:text="${category}"></span>
+                        <span style="color:#7CFF4F;"> ✦</span>
+                    </h3>
 
-                <div class="card"
-                     style="
-                     background:#0b0d0e;
-                     border:1px solid #292d2f;
-                     border-radius:15px;
-                     box-shadow:0 8px 25px rgba(0,0,0,.3);
-                     ">
+                    <div class="row g-3">
 
-                    <div class="card-body">
+                        <!-- PRODUCT CARD -->
+                        <div class="col-6 col-lg-4 col-xl-3"
+                             th:each="item : ${products}">
 
+                            <div class="product-card h-100 p-2 p-md-3">
 
-                        <p class="fs-3 text-center"
-                           style="
-                           color:white;
-                           font-weight:600;
-                           letter-spacing:1px;
-                           margin-bottom:30px;
-                           ">
+                                <img class="product-image"
+                                     th:src="${item.image}"
+                                     th:alt="${item.name}"
+                                     loading="lazy">
 
-                            <span style="color:#7CFF4F;">✦</span>
-                            Products
-                            <span style="color:#7CFF4F;">✦</span>
+                                <div class="d-flex flex-column flex-grow-1">
+                                    <h6 class="product-name mt-3"
+                                        th:text="${item.name}">
+                                    </h6>
 
-                        </p>
+                                    <p class="product-price mt-2">
+                                        ₹<span th:text="${item.price}"></span>
+                                        <span class="discount"
+                                              th:text="${item.discount}">
+                                        </span>
+                                    </p>
 
-
-                        <div class="row">
-
-
-                            <!-- ================= PRODUCT 1 ================= -->
-
-                            <div class="col-md-3 shadow p-3 mb-5 bg-body rounded"
-                                 style="
-                                 background:#101314 !important;
-                                 border:1px solid #292d2f;
-                                 border-radius:14px !important;
-                                 transition:all .35s ease;
-                                 "
-                                 onmouseover="
-                                 this.style.transform='translateY(-7px)';
-                                 this.style.borderColor='#7CFF4F';
-                                 this.style.boxShadow='0 12px 30px rgba(124,255,79,.13)';
-                                 "
-                                 onmouseout="
-                                 this.style.transform='translateY(0)';
-                                 this.style.borderColor='#292d2f';
-                                 this.style.boxShadow='none';
-                                 ">
-
-                                <div class="card"
-                                     style="
-                                     background:#101314;
-                                     border:none;
-                                     ">
-
-                                    <div class="card-body text-center">
-
-                                        <img src="/img/babycloths.jpeg"
-                                             alt=""
-                                             width="100%"
-                                             height="150px"
-                                             style="
-                                             object-fit:contain;
-                                             border-radius:10px;
-                                             ">
-
-                                        <p class="fs-5 text-center"
-                                           style="
-                                           color:white;
-                                           font-weight:500;
-                                           margin-top:15px;
-                                           ">
-
-                                            Baby Clothes
-
-                                        </p>
-
-
-                                        <div class="row text-center">
-
-                                            <p class="fs-6 fw-bold"
-                                               style="color:white;">
-
-                                                &#8377; 1000
-
-                                                <span class="fs-6 text-succes text-green"
-                                                      style="
-                                                      color:#7CFF4F;
-                                                      margin-left:5px;
-                                                      font-weight:500;
-                                                      ">
-
-                                                    50%off
-
-                                                </span>
-
-                                            </p>
-
-
-                                            <a href="/view_product"
-                                               class="btn btn-primary col-md-6 offset-md-3"
-                                               style="
-                                               color:#050607;
-                                               background:#7CFF4F;
-                                               border:none;
-                                               border-radius:8px;
-                                               font-weight:600;
-                                               transition:all .3s ease;
-                                               "
-                                               onmouseover="
-                                               this.style.background='#9aff75';
-                                               this.style.transform='translateY(-2px)';
-                                               "
-                                               onmouseout="
-                                               this.style.background='#7CFF4F';
-                                               this.style.transform='translateY(0)';
-                                               ">
-
-                                                View Details
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
+                                    <a th:href="@{/view_product(name=${item.name})}"
+                                       class="btn view-btn mt-auto">
+                                        View Details
+                                    </a>
                                 </div>
-
                             </div>
-
-
-
-                            <!-- ================= PRODUCT 2 ================= -->
-
-                            <div class="col-md-3 shadow p-3 mb-5 bg-body rounded"
-                                 style="
-                                 background:#101314 !important;
-                                 border:1px solid #292d2f;
-                                 border-radius:14px !important;
-                                 transition:all .35s ease;
-                                 "
-                                 onmouseover="
-                                 this.style.transform='translateY(-7px)';
-                                 this.style.borderColor='#7CFF4F';
-                                 this.style.boxShadow='0 12px 30px rgba(124,255,79,.13)';
-                                 "
-                                 onmouseout="
-                                 this.style.transform='translateY(0)';
-                                 this.style.borderColor='#292d2f';
-                                 this.style.boxShadow='none';
-                                 ">
-
-                                <div class="card"
-                                     style="
-                                     background:#101314;
-                                     border:none;
-                                     ">
-
-                                    <div class="card-body text-center">
-
-                                        <img src="/img/elo1.jpeg"
-                                             alt=""
-                                             width="100%"
-                                             height="150px"
-                                             style="
-                                             object-fit:contain;
-                                             border-radius:10px;
-                                             ">
-
-                                        <p class="fs-5 text-center"
-                                           style="
-                                           color:white;
-                                           font-weight:500;
-                                           margin-top:15px;
-                                           ">
-
-                                            Electronics
-
-                                        </p>
-
-
-                                        <div class="row text-center">
-
-                                            <p class="fs-6 fw-bold"
-                                               style="color:white;">
-
-                                                &#8377; 2100
-
-                                                <span class="fs-6 text-succes text-green"
-                                                      style="
-                                                      color:#7CFF4F;
-                                                      margin-left:5px;
-                                                      font-weight:500;
-                                                      ">
-
-                                                    20%off
-
-                                                </span>
-
-                                            </p>
-
-
-                                            <a href=""
-                                               class="btn btn-primary col-md-6 offset-md-3"
-                                               style="
-                                               color:#050607;
-                                               background:#7CFF4F;
-                                               border:none;
-                                               border-radius:8px;
-                                               font-weight:600;
-                                               transition:all .3s ease;
-                                               "
-                                               onmouseover="
-                                               this.style.background='#9aff75';
-                                               this.style.transform='translateY(-2px)';
-                                               "
-                                               onmouseout="
-                                               this.style.background='#7CFF4F';
-                                               this.style.transform='translateY(0)';
-                                               ">
-
-                                                View Details
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-
-                            <!-- ================= PRODUCT 3 ================= -->
-
-                            <div class="col-md-3 shadow p-3 mb-5 bg-body rounded"
-                                 style="
-                                 background:#101314 !important;
-                                 border:1px solid #292d2f;
-                                 border-radius:14px !important;
-                                 transition:all .35s ease;
-                                 "
-                                 onmouseover="
-                                 this.style.transform='translateY(-7px)';
-                                 this.style.borderColor='#7CFF4F';
-                                 this.style.boxShadow='0 12px 30px rgba(124,255,79,.13)';
-                                 "
-                                 onmouseout="
-                                 this.style.transform='translateY(0)';
-                                 this.style.borderColor='#292d2f';
-                                 this.style.boxShadow='none';
-                                 ">
-
-                                <div class="card"
-                                     style="
-                                     background:#101314;
-                                     border:none;
-                                     ">
-
-                                    <div class="card-body text-center">
-
-                                        <img src="/img/mob.jpeg"
-                                             alt=""
-                                             width="100%"
-                                             height="150px"
-                                             style="
-                                             object-fit:contain;
-                                             border-radius:10px;
-                                             ">
-
-                                        <p class="fs-5 text-center"
-                                           style="
-                                           color:white;
-                                           font-weight:500;
-                                           margin-top:15px;
-                                           ">
-
-                                            Mobile Phones
-
-                                        </p>
-
-
-                                        <div class="row text-center">
-
-                                            <p class="fs-6 fw-bold"
-                                               style="color:white;">
-
-                                                &#8377; 4500
-
-                                                <span class="fs-6 text-succes text-green"
-                                                      style="
-                                                      color:#7CFF4F;
-                                                      margin-left:5px;
-                                                      font-weight:500;
-                                                      ">
-
-                                                    30%off
-
-                                                </span>
-
-                                            </p>
-
-
-                                            <a href=""
-                                               class="btn btn-primary col-md-6 offset-md-3"
-                                               style="
-                                               color:#050607;
-                                               background:#7CFF4F;
-                                               border:none;
-                                               border-radius:8px;
-                                               font-weight:600;
-                                               transition:all .3s ease;
-                                               "
-                                               onmouseover="
-                                               this.style.background='#9aff75';
-                                               this.style.transform='translateY(-2px)';
-                                               "
-                                               onmouseout="
-                                               this.style.background='#7CFF4F';
-                                               this.style.transform='translateY(0)';
-                                               ">
-
-                                                View Details
-
-                                            </a>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Existing commented product remains unchanged -->
-
-
                         </div>
 
+                        <!-- NO PRODUCTS -->
+                        <div class="col-12 text-center py-5"
+                             th:if="${#lists.isEmpty(products)}">
+
+                            <i class="fa-solid fa-box-open fa-3x mb-3"
+                               style="color:#7CFF4F;"></i>
+
+                            <h4>No products found</h4>
+                            <p style="color:#b8b8b8;">
+                                Try another search or category.
+                            </p>
+
+                            <a th:href="@{/products}" class="btn view-btn">
+                                View All Products
+                            </a>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
+
+    <style>
+        .category-panel,
+        .products-panel {
+            background: #101314;
+            border: 1px solid #292d2f;
+            border-radius: 14px;
+        }
+
+        .category-link {
+            background: #101314;
+            color: #e0e0e0;
+            border: 1px solid #292d2f;
+            border-radius: 7px !important;
+            margin-bottom: 5px;
+            transition: all .25s ease;
+        }
+
+        .category-link:hover {
+            background: #171d17;
+            color: #7CFF4F;
+            border-color: #7CFF4F;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-width: 0;
+            background: #101314;
+            border: 1px solid #292d2f;
+            border-radius: 14px;
+            transition: all .3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #7CFF4F;
+            box-shadow: 0 10px 25px rgba(124,255,79,.12);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 9px;
+        }
+
+        .product-name {
+            color: white;
+            overflow-wrap: anywhere;
+        }
+
+        .product-price {
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .discount {
+            display: inline-block;
+            color: #7CFF4F;
+            font-size: 12px;
+            margin-left: 3px;
+        }
+
+        .view-btn {
+            color: #050607;
+            background: #7CFF4F;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .view-btn:hover {
+            color: #050607;
+            background: #69e83f;
+        }
+
+        @media (max-width: 575.98px) {
+            .product-image {
+                height: 110px;
+            }
+
+            .product-name {
+                font-size: 13px;
+            }
+
+            .product-price {
+                font-size: 12px;
+            }
+
+            .discount {
+                font-size: 11px;
+            }
+
+            .view-btn {
+                font-size: 12px;
+                padding: 7px 4px;
+            }
+
+            .category-panel {
+                padding: 10px !important;
+            }
+        }
+    </style>
 
 </section>
-
 </body>
 </html>

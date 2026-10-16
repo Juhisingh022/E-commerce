@@ -399,8 +399,59 @@
 
                 </li>
 
+<!-- ================= CART ================= -->
 
-                <!-- ADMIN -->
+<li class="nav-item">
+    <a class="nav-link"
+       href="/cart"
+       style="
+       color:white;
+       font-size:15px;
+       font-weight:500;
+       padding:8px 17px;
+       border:1px solid #3b3d3f;
+       border-radius:22px;
+       transition:all .3s ease;
+       white-space:nowrap;
+       position:relative;
+       "
+       onmouseover="
+       this.style.color='#7CFF4F';
+       this.style.borderColor='#7CFF4F';
+       "
+       onmouseout="
+       this.style.color='white';
+       this.style.borderColor='#3b3d3f';
+       ">
+
+        <i class="fa-solid fa-cart-shopping"
+           style="margin-right:5px;"></i>Cart
+<span id="cartLink"
+      th:text="${cartCount != null ? cartCount : 0}"
+      style="
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:20px;
+      height:20px;
+      padding:0 5px;
+      margin-left:4px;
+      border-radius:50%;
+      background:#7CFF4F;
+      color:#050607;
+      font-size:11px;
+      font-weight:700;
+      ">
+    0
+</span>
+
+    </a>
+</li>
+
+<!-- ================= END CART ================= -->
+
+
+                <!-- ADMIN 
 
                 <li class="nav-item">
 
@@ -431,7 +482,7 @@
 
                     </a>
 
-                </li>
+                </li>-->
 
             </ul>
 
